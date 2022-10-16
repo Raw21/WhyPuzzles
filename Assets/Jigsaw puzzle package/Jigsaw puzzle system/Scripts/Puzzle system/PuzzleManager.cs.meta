@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 1363fa4e313011142a04482cf102301a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_behaviourSettings: {fileID: 11400000, guid: bad9291bc8450c242b5bed5859334727,
+      type: 2}
+  - m_soundEffects: {fileID: 11400000, guid: 487a242ff03f5174bb58f7603857eea7, type: 2}
+  - m_puzzleMaterial: {instanceID: 0}
+  - m_ghostMaterial: {fileID: 2100000, guid: 7a040807568ced949ba2adea266b3fc1, type: 2}
+  - m_particleSystem: {fileID: 198826217562720492, guid: 21afefc809a110947ba906dc771b7383,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

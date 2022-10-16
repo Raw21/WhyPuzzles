@@ -1,0 +1,53 @@
+﻿#pragma kernel CSHorizontalBlur
+#pragma kernel CSVerticalBlur
+
+Texture2D<float4> Prev;
+RWTexture2D<float4> Result;
+StructuredBuffer<float> Kernel;
+
+int Resolution;
+int KernelSize;
+int HalfKernelSize;
+
+[numthreads(8, 8, 1)]
+void CSHorizontalBlur (uint3 id : SV_DispatchThreadID)
+{
+	float sum = 0;
+
+	for (int i = 0; i < KernelSize; i++)
+	{
+		int offset = i - HalfKernelSize;
+
+		int index = id.x + offset;
+		if (index < 0)
+			offset = -id.x;
+		else if (index >= Resolution)
+			offset = Resolution - 1 - id.x;
+
+		sum += Prev[id.xy + int2(offset, 0)].r * Kernel[i];
+	}
+
+	Result[id.xy] = float4(sum, sum, sum, 1);
+}
+
+
+[numthreads(8, 8, 1)]
+void CSVerticalBlur(uint3 id : SV_DispatchThreadID)
+{
+	float sum = 0;
+
+	for (int i = 0; i < KernelSize; i++)
+	{
+		int offset = i - HalfKernelSize;
+
+		int index = id.y + offset;
+		if (index < 0)
+			offset = -id.y;
+		else if (index >= Resolution)
+			offset = Resolution - 1 - id.y;
+
+		sum += Prev[id.xy + int2(0, offset)].r * Kernel[i];
+	}
+
+	Result[id.xy] = float4(sum, sum, sum, 1);
+}

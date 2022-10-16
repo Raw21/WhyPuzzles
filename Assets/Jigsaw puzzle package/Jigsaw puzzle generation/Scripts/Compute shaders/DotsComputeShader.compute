@@ -1,0 +1,62 @@
+﻿#pragma kernel CSSetTexture
+#pragma kernel CSCreateSeams
+
+RWTexture2D<float4> Result;
+StructuredBuffer<float3> Vertices;
+
+int Resolution;
+int NumVertices;
+float HalfThickness;
+float HalfThicknessSq;
+
+[numthreads(8, 8, 1)]
+void CSSetTexture(uint3 id : SV_DispatchThreadID)
+{
+	Result[id.xy] = float4(1, 1, 1, 1);
+}
+
+
+[numthreads(64, 1, 1)]
+void CSCreateSeams(uint3 id : SV_DispatchThreadID)
+{
+	if ((int)id.x >= NumVertices)
+	{
+		return;
+	}
+
+	float3 v1 = Vertices[id.x];
+
+	float threshold = HalfThicknessSq;
+
+	float minV1x = v1.x - HalfThickness;
+	float minV1y = v1.y - HalfThickness;
+	float maxV1x = v1.x + HalfThickness;
+	float maxV1y = v1.y + HalfThickness;
+
+	int minX = (int) (Resolution * minV1x - 0.5);
+	int maxX = (int) (Resolution * maxV1x - 0.5);
+	int minY = (int) (Resolution * minV1y - 0.5);
+	int maxY = (int) (Resolution * maxV1y - 0.5);
+
+	for (int i = minX; i <= maxX; i++)
+	{
+		for (int j = minY; j <= maxY; j++)
+		{
+			float x = (i + 0.5) / Resolution;
+			float y = (j + 0.5) / Resolution;
+
+			float dist1x = x - v1.x;
+			float dist1y = y - v1.y;
+
+			float dist1xSq = dist1x * dist1x;
+			float dist1ySq = dist1y * dist1y;
+
+			float dist1Sq = dist1xSq + dist1ySq;
+
+			if (dist1Sq < threshold)
+			{
+				Result[uint2(i, j)] = float4(0, 0, 0, 1);
+			}
+		}
+	}
+}

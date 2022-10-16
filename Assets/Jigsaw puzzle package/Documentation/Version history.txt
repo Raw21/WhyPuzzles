@@ -1,0 +1,26 @@
+v0.1
+2021-11-24
+Initial release
+* Jigsaw puzzle generation tool
+	* Scenes
+		Jigsaw puzzle prefab generator scene
+* Jigsaw puzzle system
+	* Scenes
+		Jigsaw puzzle system example scene
+
+		
+v0.11
+2022-01-29
+* Small change to the camera far clipping plane to improve the shadows in Unity 2020.3
+* Bug fix to the JigsawPuzzleGenerator script so that it no longer throws an error when building for release
+* Specific versions of the package have been generated for Unity 2019.4 (LTS) and 2020.3 (LTS)
+
+
+v0.12
+2022-04-09
+* Bug fix to JigsawSvgGenerator to ensure decimal places use dots rather than commas regardless of local culture convention
+* Removed some commented out code left over after the initial development phase
+* Incorporated the Vector Graphics package directly into the project so that it no longer needs to be added separately as an additional step
+* Fixed a bug in the image rotator so that the name of the image is no longer lost after it has been rotated
+* Increased the camera size to 4 (from 3.8) to allow slightly more room for the puzzle pieces to scatter into
+* Decreased the puzzle piece jitter ratio in PuzzleManager.cs from 0.1 to 0.05 so that the pieces have slightly less spare space between them after scattering

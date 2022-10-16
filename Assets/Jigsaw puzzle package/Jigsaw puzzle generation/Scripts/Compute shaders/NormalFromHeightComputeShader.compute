@@ -1,0 +1,32 @@
+﻿#pragma kernel CSNormalFromHeight
+
+Texture2D<float4> Height;
+RWTexture2D<float4> Normal;
+
+[numthreads(8,8,1)]
+void CSNormalFromHeight(uint3 id : SV_DispatchThreadID)
+{
+	// [6][7][8]
+	// [3][4][5]
+	// [0][1][2]
+
+	float _0 = Height[uint2(id.x - 1, id.y - 1)];
+	float _1 = Height[uint2(id.x,     id.y - 1)];
+	float _2 = Height[uint2(id.x + 1, id.y - 1)];
+	float _3 = Height[uint2(id.x - 1, id.y    )];
+	float _4 = Height[uint2(id.x    , id.y    )];
+	float _5 = Height[uint2(id.x + 1, id.y    )];
+	float _6 = Height[uint2(id.x - 1, id.y + 1)];
+	float _7 = Height[uint2(id.x    , id.y + 1)];
+	float _8 = Height[uint2(id.x + 1, id.y + 1)];
+
+	float x = (-(_2 - _0 + 2 * (_5 - _3) + _8 - _6) + 1.0) * 0.5;
+	float y = (-(_6 - _0 + 2 * (_7 - _1) + _8 - _2) + 1.0) * 0.5;
+	float z = 1.0;
+
+	//float3 xyz = float3(x, y, z);
+	//xyz = normalize(xyz);
+
+
+    Normal[id.xy] = float4(x, y, z, 1.0);
+}

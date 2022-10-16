@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dc71303c8554324cba749210d852dd3, type: 3}
+  m_Name: Sound effects
+  m_EditorClassIdentifier: 
+  puzzlePieceConnect:
+    clips:
+    - {fileID: 8300000, guid: 856c2daa6987337458f6116669ff8355, type: 3}
+    - {fileID: 8300000, guid: b87498cbe91bf9548b5f38e97b7d1433, type: 3}
+    - {fileID: 8300000, guid: 763e61ea55aca5e489ec925a48ba2519, type: 3}
+    - {fileID: 8300000, guid: 2e43b048be663de4a93c5bcceda30156, type: 3}
+    - {fileID: 8300000, guid: 6037092ff8d4400469f86378acc247a1, type: 3}
+    - {fileID: 8300000, guid: ebab84b7125437a4584580defad000be, type: 3}
+    - {fileID: 8300000, guid: 50b984c3d147d4e4785ac6641920e81d, type: 3}
+    - {fileID: 8300000, guid: 7db40cdc165ec454990593febfa4a4f8, type: 3}
+    - {fileID: 8300000, guid: d7441589bf211904cbb173ef6b893d78, type: 3}
+    - {fileID: 8300000, guid: 6261a167197ecf9428986edb3b024995, type: 3}
+    - {fileID: 8300000, guid: c05ba7403ab0da644b0a9071ec7881f3, type: 3}
+    - {fileID: 8300000, guid: 0ccb44b64f319a44f9923492073395be, type: 3}
+    - {fileID: 8300000, guid: 67b831441d9fe8445b333bbdb1a32a34, type: 3}
+    - {fileID: 8300000, guid: be072dcac0c607b45b3fe1af266b4322, type: 3}
+    - {fileID: 8300000, guid: 4b83a6302368270449daa7686113c23b, type: 3}
+    - {fileID: 8300000, guid: c6d2ab2b37bd0ba4289c9b707c5646fd, type: 3}
+    - {fileID: 8300000, guid: a894b6fd3d60ba84cae5c018f32ad241, type: 3}
+    - {fileID: 8300000, guid: 2e885f6d30ee189468bbc8d8e4820357, type: 3}
+    - {fileID: 8300000, guid: cb1c5fe8a57bc994d8f2b9fb6f83a3cf, type: 3}
+    - {fileID: 8300000, guid: 76a5e2393e3328540b658c02560fe720, type: 3}
+    - {fileID: 8300000, guid: 83ebb99d986ff1b418e088c2ee58d6c5, type: 3}
+    - {fileID: 8300000, guid: a99a1cc1c17c3a74795e2cb4b04350bc, type: 3}
+    - {fileID: 8300000, guid: f3eee22f90cf24a42b2d7fcd2657250d, type: 3}
+    - {fileID: 8300000, guid: a1a665ad13bb53b468899a5eaaf0c89b, type: 3}
+    - {fileID: 8300000, guid: 907608b71d7f6204097967607881e2e1, type: 3}
+    minVolume: 1
+    maxVolume: 1
+    minPitch: 0.9
+    maxPitch: 1.1
+  puzzlePiecePutDown:
+    clips:
+    - {fileID: 8300000, guid: 1add8c728f5d6674f97f880e14127d2e, type: 3}
+    - {fileID: 8300000, guid: 1a0cc967c74818a49af38f07dec6dc6a, type: 3}
+    - {fileID: 8300000, guid: 49f001b1768e87641ba7278661027b05, type: 3}
+    - {fileID: 8300000, guid: f591c4c879512de4c92ce8b5ef5ff7dd, type: 3}
+    - {fileID: 8300000, guid: 9bf6c9c4a12ada54a83e9f74b090fa8a, type: 3}
+    - {fileID: 8300000, guid: 51e78604b11a93c41b7ec5c070ea55ee, type: 3}
+    - {fileID: 8300000, guid: 45f2873449ea2624e8cb346d8e4ebb52, type: 3}
+    - {fileID: 8300000, guid: 781fb35c7b2b8384d89144a4c3cf6830, type: 3}
+    - {fileID: 8300000, guid: 651640b5a2a705d4bab96e1ed5d5a1f0, type: 3}
+    - {fileID: 8300000, guid: cf20f5352284f434daf1e6d6193bd9af, type: 3}
+    - {fileID: 8300000, guid: 5bdc4e180b5280044ae8f634f3df3f3c, type: 3}
+    - {fileID: 8300000, guid: 0f2de521d53386841a8142b0577c466c, type: 3}
+    - {fileID: 8300000, guid: 30219b3ac0da42a4da2db359796c0eb2, type: 3}
+    - {fileID: 8300000, guid: 7c75dc116d424d74a830c2c4fa375a67, type: 3}
+    - {fileID: 8300000, guid: bb9cd377ab3a21847aaab7ad8760b53f, type: 3}
+    - {fileID: 8300000, guid: 2d5c3be2823c57b498938d52e663bc11, type: 3}
+    - {fileID: 8300000, guid: 3effe71f9858b1f478596a195ca784d3, type: 3}
+    minVolume: 0.8
+    maxVolume: 1
+    minPitch: 0.9
+    maxPitch: 1.1
+  puzzlePiecePutInFinalPosition:
+    clips:
+    - {fileID: 8300000, guid: 4b7dcf058da921849a0668b5339412d6, type: 3}
+    - {fileID: 8300000, guid: 8b228fdae7890d64192b8b7eb03c4f4e, type: 3}
+    - {fileID: 8300000, guid: 129c32e3e5daf2e4ca4e320d89d9b97d, type: 3}
+    - {fileID: 8300000, guid: db0ff396552281f49a96671a8e5a563a, type: 3}
+    - {fileID: 8300000, guid: 24b20691bab25c646b236fe4c4d7222a, type: 3}
+    - {fileID: 8300000, guid: 92372770db54a1047bce46e8ada17935, type: 3}
+    - {fileID: 8300000, guid: 972cf20c29c1a6043be77901f1b9afed, type: 3}
+    - {fileID: 8300000, guid: e1c5415af44e8234cbe16b62ab796433, type: 3}
+    - {fileID: 8300000, guid: 1a91457819984514eab5b3c60e6026d4, type: 3}
+    - {fileID: 8300000, guid: b19d278c509236e4f8fc1eee0c0644b5, type: 3}
+    - {fileID: 8300000, guid: 425a064f3749a674b8dd4dafb4248aa0, type: 3}
+    - {fileID: 8300000, guid: 65e90ee41c1fa994c80ec0dcd105cc17, type: 3}
+    - {fileID: 8300000, guid: 39cbe6fac6dcf1f428e2a1b35a3c4318, type: 3}
+    - {fileID: 8300000, guid: 27c71bb5f67a7cb48ae926d32ce28c3e, type: 3}
+    - {fileID: 8300000, guid: 80ca3b72b40f9ae458814df8034f9644, type: 3}
+    - {fileID: 8300000, guid: ba9d247c90d6e3d43a83a1a39734052a, type: 3}
+    - {fileID: 8300000, guid: 53d564462b05ba943838efd05e29d8e8, type: 3}
+    - {fileID: 8300000, guid: 0c9c95e7888c5254188ae04f72ce6573, type: 3}
+    minVolume: 0.8
+    maxVolume: 1
+    minPitch: 0.9
+    maxPitch: 1.1
+  puzzleComplete:
+    clips:
+    - {fileID: 8300000, guid: 39b9a6be5ca0f8b40888724581685552, type: 3}
+    minVolume: 0.2
+    maxVolume: 0.2
+    minPitch: 1
+    maxPitch: 1
+  buttonClick:
+    clips:
+    - {fileID: 8300000, guid: 67b831441d9fe8445b333bbdb1a32a34, type: 3}
+    minVolume: 1
+    maxVolume: 1
+    minPitch: 1
+    maxPitch: 1
+  panelSlide:
+    clips:
+    - {fileID: 8300000, guid: ac32e8c9ff1d2d849b057441b473b44b, type: 3}
+    minVolume: 0.05
+    maxVolume: 0.05
+    minPitch: 3
+    maxPitch: 3

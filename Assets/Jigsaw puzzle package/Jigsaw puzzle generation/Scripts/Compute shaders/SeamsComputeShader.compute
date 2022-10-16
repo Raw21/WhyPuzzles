@@ -1,0 +1,90 @@
+﻿#pragma kernel CSSetTexture
+#pragma kernel CSCreateSeams
+
+RWTexture2D<float4> Result;
+StructuredBuffer<float3> Vertices;
+
+int Resolution;
+int NumVertices;
+float HalfThickness;
+float HalfThicknessSq;
+
+[numthreads(8, 8, 1)]
+void CSSetTexture(uint3 id : SV_DispatchThreadID)
+{
+	Result[id.xy] = float4(1, 1, 1, 1);
+}
+
+
+[numthreads(64, 1, 1)]
+void CSCreateSeams(uint3 id : SV_DispatchThreadID)
+{
+	if ((int)id.x >= (NumVertices - 1))
+	{
+		return;
+	}
+
+	float3 v1 = Vertices[id.x];
+	float3 v2 = Vertices[id.x + 1];
+
+	// Anti-aliasing
+	float halfThicnessPlus = HalfThickness + 1.0 / Resolution;
+
+	float innerThreshold = v1.z * HalfThickness;
+	float outerThreshold = v1.z * halfThicnessPlus;
+
+	float minV1x = v1.x - halfThicnessPlus;
+	float minV1y = v1.y - halfThicnessPlus;
+	float maxV1x = v1.x + halfThicnessPlus;
+	float maxV1y = v1.y + halfThicnessPlus;
+	float minV2x = v2.x - halfThicnessPlus;
+	float minV2y = v2.y - halfThicnessPlus;
+	float maxV2x = v2.x + halfThicnessPlus;
+	float maxV2y = v2.y + halfThicnessPlus;
+
+	int minX = (int) (Resolution * min(minV1x, minV2x) - 0.5);
+	int maxX = (int) (Resolution * max(maxV1x, maxV2x) - 0.5);
+	int minY = (int) (Resolution * min(minV1y, minV2y) - 0.5);
+	int maxY = (int) (Resolution * max(maxV1y, maxV2y) - 0.5);
+
+	for (int i = minX; i <= maxX; i++)
+	{
+		for (int j = minY; j <= maxY; j++)
+		{
+			float x = (i + 0.5) / Resolution;
+			float y = (j + 0.5) / Resolution;
+
+			float dist1x = x - v1.x;
+			float dist1y = y - v1.y;
+			float dist2x = x - v2.x;
+			float dist2y = y - v2.y;
+
+			float dist1xSq = dist1x * dist1x;
+			float dist1ySq = dist1y * dist1y;
+			float dist2xSq = dist2x * dist2x;
+			float dist2ySq = dist2y * dist2y;
+
+			float dist1Sq = dist1xSq + dist1ySq;
+			float dist2Sq = dist2xSq + dist2ySq;
+			float dist1 = sqrt(dist1Sq);
+			float dist2 = sqrt(dist2Sq);
+			float dist1To2Sq = (v2.x - v1.x) * (v2.x - v1.x) + (v2.y - v1.y) * (v2.y - v1.y);
+
+			float numerator = (v2.x - v1.x) * (v1.y - y) - (v1.x - x) * (v2.y - v1.y);
+			float distToLineSq = numerator * numerator / dist1To2Sq;
+			float distToLine = sqrt(distToLineSq);
+
+			if ((dist1 < outerThreshold || dist2 < outerThreshold) || (distToLine < outerThreshold && dist1Sq < dist1To2Sq && dist2Sq < dist1To2Sq))
+			{
+				float minDistance = min(distToLine, min(dist1, dist2));
+								
+				uint2 coords = uint2(i, j);
+				float existingValue = Result[coords];
+
+				float value = min(existingValue, smoothstep(innerThreshold, outerThreshold, minDistance));
+
+				Result[coords] = float4(value, value, value, 1);
+			}
+		}
+	}
+}
